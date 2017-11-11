@@ -1,5 +1,6 @@
 """
-Project Euler Problem #3
+Project Euler Problem #10
+Give the sum of all primes less than two million
 """
 from math import sqrt
 
@@ -31,23 +32,12 @@ def prime_generator(n):
     return [i[0] for i in enumerate(ints) if i[1]]
 
 
-def prime_factors(n):
-    """Returns a list of prime factors"""
-# First get a list of possible primes to check
-    primes = prime_generator(int(sqrt(n)))
-    factors = []
-# 1 is always a factor so we don't need to include it
-    for i in range(1, len(primes) - 1):
-        while (n % primes[i] == 0):
-            factors.append(primes[i])
-            n = n / primes[i]
-
-    return factors
-
-
-def greatest_prime_factor(n):
-    return prime_factors(n)[-1]
+def sum_of_primes(value):
+    """ Returns the sum of all primes less than the value
+    passed in. """
+    return sum(prime_generator(value))
 
 
 if __name__ == "__main__":
-    print(greatest_prime_factor(600851475143))
+    print("The sum of all primes less than %d is %d"
+          % (2000000, sum_of_primes(2000000)))
